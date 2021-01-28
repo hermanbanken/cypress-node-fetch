@@ -12,7 +12,7 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-import fetch from "node-fetch";
+import fetch from 'node-fetch'
 
 /**
  * @type {Cypress.PluginConfig}
@@ -21,9 +21,9 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  on("task", {
-    "fetch"(opts) {
-      const { url, ...rest } = opts;
+  on('task', {
+    fetch(opts) {
+      const { url, ...rest } = opts
       return fetch(url, rest).then((resp) => {
         return resp.text().then((text) => ({
           status: resp.status,
@@ -31,14 +31,14 @@ module.exports = (on, config) => {
           headers: resp.headers,
           body: text,
           ok: resp.ok,
-        }));
-      });
+        }))
+      })
     },
-    "pid"() {
-      console.log("NodeJS info");
+    pid() {
+      console.log('NodeJS info')
       return {
         pid: process.pid,
-      };
-    }
+      }
+    },
   })
 }

@@ -3,10 +3,10 @@
 /// <reference types="cypress" />
 
 interface NodeJSRequestOptions {
-  url: string;
-  method: "GET" | "PUT" | "POST" | "DELETE";
-  headers: Record<string,string>;
-  body: FormData | object;
+  url: string
+  method: 'GET' | 'PUT' | 'POST' | 'DELETE'
+  headers: Record<string, string>
+  body: FormData | object
 }
 
 declare namespace Cypress {
@@ -25,7 +25,7 @@ declare namespace Cypress {
      *     "foo": "bar"
      *   }
      * })
-    */
+     */
     fetchNodeJS(options: NodeJSRequestOptions): Chainable<Element>
   }
 }
