@@ -9,12 +9,7 @@ describe('pastbin.com', () => {
       headers: {
         'User-Agent': 'c2fIAP',
         'Cache-Control': 'no-cache',
-        // "Authorization": `Bearer TOKEN`,
-        // "Content-Type": "application/json",
       },
-      // body: JSON.stringify({
-      // 	foo: "bar"
-      // }),
     }).then((result: Object) => {
       cy.log(JSON.stringify(result))
       expect(result).to.own.include({
