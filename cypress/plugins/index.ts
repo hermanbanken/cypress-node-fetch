@@ -13,6 +13,8 @@
 // the project's config changing)
 
 import fetch from 'node-fetch'
+import type { ServerOptions } from '../support/index'
+import { createServer } from 'http'
 
 /**
  * @type {Cypress.PluginConfig}
@@ -39,6 +41,17 @@ module.exports = (on, config) => {
       return {
         pid: process.pid,
       }
+    },
+    server(opts: ServerOptions) {
+      createServer((req, res) => {
+        for (const key in opts.response.headers || {}) {
+          res.setHeader(key, opts.response.headers[key])
+        }
+        res.writeHead(opts.response.status)
+        res.write(opts.response.body)
+        res.end()
+      }).listen(opts.port || 8080)
+      return {}
     },
   })
 }

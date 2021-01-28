@@ -39,4 +39,19 @@ describe('pastbin.com', () => {
       })
     })
   })
+
+  it('does a request to a self-started server', () => {
+    cy.startServer({
+      port: 60801,
+      response: {
+        status: 200,
+        body: 'Foobar',
+        headers: {},
+      },
+    }).then(() => {
+      cy.request('http://localhost:60801/test', {}).then((resp) => {
+        cy.log('Response', resp)
+      })
+    })
+  })
 })

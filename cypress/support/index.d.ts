@@ -2,12 +2,7 @@
 // load type definitions that come with Cypress module
 /// <reference types="cypress" />
 
-interface NodeJSRequestOptions {
-  url: string
-  method: 'GET' | 'PUT' | 'POST' | 'DELETE'
-  headers: Record<string, string>
-  body: FormData | object
-}
+import { NodeJSRequestOptions, ServerOptions } from './commands'
 
 declare namespace Cypress {
   interface Chainable {
@@ -27,5 +22,22 @@ declare namespace Cypress {
      * })
      */
     fetchNodeJS(options: NodeJSRequestOptions): Chainable<Element>
+  }
+  interface Chainable {
+    /**
+     * Custom command to perform native NodeJS HTTP requests
+     * @example
+     * cy.startServer({
+     *   port: 8080,
+     *   response: {
+     *     status: 200,
+     *     body: "<p>Foo</p>"
+     *     headers: {
+     *       "Content-Type": "text/html",
+     *     },
+     *   }
+     * })
+     */
+    startServer(options: ServerOptions): Chainable<Element>
   }
 }
