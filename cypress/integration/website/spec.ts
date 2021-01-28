@@ -17,19 +17,19 @@ describe('pastbin.com', () => {
         status: 200,
       })
     })
-	});
+  })
 
-	it('uploading a JSON body', () => {
+  it('uploading a JSON body', () => {
     cy.fetchNodeJS({
       url: 'https://requestbin.net/r/dahw5vrs',
       method: 'post',
       headers: {
         'User-Agent': 'c2fIAP',
         'Cache-Control': 'no-cache',
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-      	foo: "bar"
+        foo: 'bar',
       }),
     }).then((result: Object) => {
       cy.log(JSON.stringify(result))
