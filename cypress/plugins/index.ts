@@ -23,7 +23,7 @@ module.exports = (on, config) => {
 
   on('task', {
     fetch(opts) {
-      const { url, ...rest } = opts
+      const { url, ...rest } = opts;
       return fetch(url, rest).then((resp) => {
         return resp.text().then((text) => ({
           status: resp.status,
